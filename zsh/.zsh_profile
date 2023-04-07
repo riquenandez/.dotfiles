@@ -1,0 +1,36 @@
+VIM="nvim"
+
+# source /usr/share/doc/fzf/examples/key-bindings.zsh
+# source /usr/share/doc/fzf/examples/completion.zsh
+
+export DEV="$HOME/dev"
+export GIT_EDITOR=$VIM
+export AWS_PROFILE=bobnon-ro
+export PYTHON="/Library/Frameworks/Python.framework/Versions/3.9/bin/python3"
+
+alias vi="/usr/local/bin/nvim"
+
+export PATH="$PATH:/Users/ryk6500/bin"
+
+# Where should I put you?
+bindkey -s ^f "tmux-sessionizer\n"
+
+# Auto Complete
+autoload bashcompinit && bashcompinit
+autoload -Uz compinit && compinit
+complete -C '/usr/local/bin/aws_completer' aws
+
+# Automatically change node version
+# autoload -U add-zsh-hook
+# load-nvmrc() {
+#   if [[ -f .nvmrc && -r .nvmrc ]]; then
+#     n auto
+#   ## else [[ $(nvm version) != $(nvm version default)  ]]; then
+#   ##   echo "Reverting to nvm default version"
+#   #
+#   ##   # nvm use default
+#   fi
+# }
+# add-zsh-hook chpwd load-nvmrc
+# load-nvmrc
+
