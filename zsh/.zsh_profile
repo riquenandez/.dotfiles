@@ -10,7 +10,8 @@ export AWS_PROFILE=bobnon-ro
 
 alias vi="/usr/local/bin/nvim"
 
-export PATH="$PATH:/Users/ryk6500/bin"
+path+=('~/.local/scripts')
+export PATH
 
 # Where should I put you?
 bindkey -s ^f "tmux-sessionizer\n"
