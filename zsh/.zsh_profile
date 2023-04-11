@@ -6,7 +6,7 @@ VIM="nvim"
 export DEV="$HOME/dev"
 export GIT_EDITOR=$VIM
 export AWS_PROFILE=bobnon-ro
-export PYTHON="/Library/Frameworks/Python.framework/Versions/3.9/bin/python3"
+# export PYTHON="/Library/Frameworks/Python.framework/Versions/3.9/bin/python3"
 
 alias vi="/usr/local/bin/nvim"
 
@@ -35,4 +35,6 @@ complete -C '/usr/local/bin/aws_completer' aws
 # load-nvmrc
 # PROMPT='%(?.%F{green}√.%F{red}?%?)%f %B%F{blue}%1~%f%b %# '
 
+export PATH="$HOME/neovim/build/bin:$PATH"
 
+PYTHON='/usr/bin/python3'
