@@ -33,4 +33,6 @@ complete -C '/usr/local/bin/aws_completer' aws
 # }
 # add-zsh-hook chpwd load-nvmrc
 # load-nvmrc
+# PROMPT='%(?.%F{green}√.%F{red}?%?)%f %B%F{blue}%1~%f%b %# '
+
 
