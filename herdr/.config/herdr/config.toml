@@ -1,0 +1,7 @@
+# Same key as the tmux binding: prefix+f picks a project and jumps to its workspace.
+[[keys.command]]
+key = "prefix+f"
+type = "popup"
+command = "~/.local/scripts/herdr-sessionizer"
+width = "80%"
+height = "60%"

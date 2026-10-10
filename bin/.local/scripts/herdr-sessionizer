@@ -1,0 +1,37 @@
+#!/usr/bin/env bash
+# One herdr workspace per project, labelled like tmux-sessionizer names its sessions.
+
+if [[ $# -eq 1 ]]; then
+    selected=$1
+else
+    selected=$(find ~/Developer ~/.dotfiles ~/ -mindepth 1 -maxdepth 1 -type d | fzf)
+fi
+
+if [[ -z $selected ]]; then
+    exit 0
+fi
+
+selected=$(cd "$selected" && pwd) || exit 1
+selected_name=$(basename "$selected" | sed -e 's#^bob-##; s#^ma-##')
+
+if ! herdr workspace list >/dev/null 2>&1; then
+    nohup herdr server >/dev/null 2>&1 &
+    for _ in {1..50}; do
+        herdr workspace list >/dev/null 2>&1 && break
+        sleep 0.1
+    done
+fi
+
+workspace_id=$(herdr workspace list |
+    jq -r --arg label "$selected_name" \
+        'first(.result.workspaces[] | select(.label == $label) | .workspace_id) // empty')
+
+if [[ -n $workspace_id ]]; then
+    herdr workspace focus "$workspace_id" >/dev/null
+else
+    herdr workspace create --cwd "$selected" --label "$selected_name" --focus >/dev/null
+fi
+
+if [[ ${HERDR_ENV:-} != 1 ]]; then
+    exec herdr
+fi
