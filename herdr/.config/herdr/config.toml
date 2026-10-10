@@ -1,3 +1,4 @@
+onboarding = false
 # Same key as the tmux binding: prefix+f picks a project and jumps to its workspace.
 [[keys.command]]
 key = "prefix+f"
@@ -5,3 +6,10 @@ type = "popup"
 command = "~/.local/scripts/herdr-sessionizer"
 width = "80%"
 height = "60%"
+
+# prefix+i opens nvim on the focused pane's directory in a zoomed pane; :q returns to the agent.
+[[keys.command]]
+key = "prefix+i"
+type = "pane"
+command = "cd \"${HERDR_ACTIVE_PANE_CWD:-$PWD}\" && exec nvim ."
+description = "nvim in this pane's directory"
