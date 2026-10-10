@@ -76,7 +76,6 @@ source $ZSH/oh-my-zsh.sh
 
 # User configuration
 
-source ~/.bash_profile
 source ~/.zsh_profile
 
 # export MANPATH="/usr/local/man:$MANPATH"
@@ -118,3 +117,69 @@ source ~/.zsh_profile
 # load-nvmrc
 #
 
+export PYENV_ROOT="$HOME/.pyenv"
+[[ -d $PYENV_ROOT/bin ]] && export PATH="$PYENV_ROOT/bin:$PATH"
+eval "$(pyenv init -)"
+
+# add Pulumi to the PATH
+export PATH=$PATH:/Users/enrique/.pulumi/bin
+export PATH="$HOME/.local/bin:$PATH"
+
+
+# The next line updates PATH for the Google Cloud SDK.
+if [ -f '/Users/enrique/google-cloud-sdk/path.zsh.inc' ]; then . '/Users/enrique/google-cloud-sdk/path.zsh.inc'; fi
+
+# The next line enables shell command completion for gcloud.
+if [ -f '/Users/enrique/google-cloud-sdk/completion.zsh.inc' ]; then . '/Users/enrique/google-cloud-sdk/completion.zsh.inc'; fi
+
+# >>> forge initialize >>>
+# !! Contents within this block are managed by 'forge zsh setup' !!
+# !! Do not edit manually - changes will be overwritten !!
+
+# Add required zsh plugins if not already present
+if [[ ! " ${plugins[@]} " =~ " zsh-autosuggestions " ]]; then
+    plugins+=(zsh-autosuggestions)
+fi
+if [[ ! " ${plugins[@]} " =~ " zsh-syntax-highlighting " ]]; then
+    plugins+=(zsh-syntax-highlighting)
+fi
+
+# Load forge shell plugin (commands, completions, keybindings) if not already loaded
+if [[ -z "$_FORGE_PLUGIN_LOADED" ]]; then
+    eval "$(forge zsh plugin)"
+fi
+
+# Load forge shell theme (prompt with AI context) if not already loaded
+if [[ -z "$_FORGE_THEME_LOADED" ]]; then
+    eval "$(forge zsh theme)"
+fi
+
+# Disable Nerd Fonts (set during setup - icons not displaying correctly)
+# To re-enable: remove this line and install a Nerd Font from https://www.nerdfonts.com/
+# export NERD_FONT=0
+
+# Editor for editing prompts (set during setup)
+# To change: update FORGE_EDITOR or remove to use $EDITOR
+export FORGE_EDITOR="nvim"
+# <<< forge initialize <<<
+
+# >>> grok installer >>>
+export PATH="$HOME/.grok/bin:$PATH"
+# <<< grok installer <<<
+
+# vol-ops agent kill-switches (2026-07-30 telegram leak): any shell in a
+# vol-ops worktree (workmux builder/tester panes) must not reach production
+# delivery/agent surfaces. Contracts (.agents/BUILDER.md) forbid unsetting.
+if [[ "$PWD" == */vol-ops__worktrees/* ]]; then
+  export VOL_OPS_LANE_NO_DELIVER=1
+  export VOL_OPS_TRIAGE_DISABLE=1
+  export VOL_OPS_FUNCTEST_DISABLE=1
+fi
+
+# bun completions
+[ -s "/Users/enrique/.bun/_bun" ] && source "/Users/enrique/.bun/_bun"
+
+# bun
+export BUN_INSTALL="$HOME/.bun"
+export PATH="$BUN_INSTALL/bin:$PATH"
+alias study="cd ~/Developer/llm-scaling-study && open log/$(date +%F).md 2>/dev/null || cp log/TEMPLATE.md log/$(date +%F).md && open log/$(date +%F).md"

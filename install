@@ -1,0 +1,14 @@
+#!/usr/bin/env zsh
+
+#push the dotfiles directory onto the directory stack.
+pushd $DOTFILES
+# iterate over each folder in STOW_FOLDERS and 
+# symlink contents of folder into the parent directory of DOTFILES i.e, ~/
+for folder in $(echo $STOW_FOLDERS | sed "s/,/ /g")
+do
+    echo "stow $folder"
+    stow -D $folder
+    stow $folder
+done
+# pop the directory stack to return to the previous directory.
+popd
