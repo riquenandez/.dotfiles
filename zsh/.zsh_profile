@@ -15,7 +15,7 @@ path+=($HOME/.local/bin:$PATH)
 export PATH
 
 # Where should I put you?
-bindkey -s ^f "tmux-sessionizer\n"
+bindkey -s ^f "herdr-sessionizer\n"
 
 # Auto Complete
 autoload bashcompinit && bashcompinit
