@@ -3,7 +3,7 @@
 # This script checks if the STOW_FOLDERS environment variable is set. 
 # If not, it sets STOW_FOLDERS to a list of folders: bash, bin, herdr, tmux, etc.
 if [[ -z $STOW_FOLDERS ]]; then
-    STOW_FOLDERS="bash, bin, herdr, tmux, yabai, zsh"
+    STOW_FOLDERS="bash, bin, herdr, nvim, tmux, yabai, zsh"
 fi
 
 
