@@ -132,37 +132,6 @@ if [ -f '/Users/enrique/google-cloud-sdk/path.zsh.inc' ]; then . '/Users/enrique
 # The next line enables shell command completion for gcloud.
 if [ -f '/Users/enrique/google-cloud-sdk/completion.zsh.inc' ]; then . '/Users/enrique/google-cloud-sdk/completion.zsh.inc'; fi
 
-# >>> forge initialize >>>
-# !! Contents within this block are managed by 'forge zsh setup' !!
-# !! Do not edit manually - changes will be overwritten !!
-
-# Add required zsh plugins if not already present
-if [[ ! " ${plugins[@]} " =~ " zsh-autosuggestions " ]]; then
-    plugins+=(zsh-autosuggestions)
-fi
-if [[ ! " ${plugins[@]} " =~ " zsh-syntax-highlighting " ]]; then
-    plugins+=(zsh-syntax-highlighting)
-fi
-
-# Load forge shell plugin (commands, completions, keybindings) if not already loaded
-if [[ -z "$_FORGE_PLUGIN_LOADED" ]]; then
-    eval "$(forge zsh plugin)"
-fi
-
-# Load forge shell theme (prompt with AI context) if not already loaded
-if [[ -z "$_FORGE_THEME_LOADED" ]]; then
-    eval "$(forge zsh theme)"
-fi
-
-# Disable Nerd Fonts (set during setup - icons not displaying correctly)
-# To re-enable: remove this line and install a Nerd Font from https://www.nerdfonts.com/
-# export NERD_FONT=0
-
-# Editor for editing prompts (set during setup)
-# To change: update FORGE_EDITOR or remove to use $EDITOR
-export FORGE_EDITOR="nvim"
-# <<< forge initialize <<<
-
 # >>> grok installer >>>
 export PATH="$HOME/.grok/bin:$PATH"
 # <<< grok installer <<<
