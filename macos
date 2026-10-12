@@ -1,9 +1,9 @@
 #!/usr/bin/env zsh
 
 # This script checks if the STOW_FOLDERS environment variable is set. 
-# If not, it sets STOW_FOLDERS to a list of folders: bash, bin, herdr, skhd, etc.
+# If not, it sets STOW_FOLDERS to a list of folders: bash, bin, herdr, tmux, etc.
 if [[ -z $STOW_FOLDERS ]]; then
-    STOW_FOLDERS="bash, bin, herdr, skhd, tmux, yabai, zsh"
+    STOW_FOLDERS="bash, bin, herdr, tmux, yabai, zsh"
 fi
 
 
